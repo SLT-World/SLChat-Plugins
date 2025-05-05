@@ -39,7 +39,7 @@ document.getElementById('gif_input').addEventListener('keydown', async function 
       for (const result of data.results) {
         const media = result.media[0];
         const url = media?.tinygif?.url || media?.gif?.url;
-        if (gifUrl) {
+        if (url) {
           const img = document.createElement('img');
           img.src = url;
           img.alt = query;
