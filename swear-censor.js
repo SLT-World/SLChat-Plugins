@@ -1,6 +1,6 @@
 const originalRenderMessageHTML = renderMessageHTML;
 
-const words = ["fuck", "shit", "bitch", "nigga", "nigger", "pussy", "bastard", "dick", "cunt", "piss", "crap", "slut", "whore", "faggot", "ass"];
+const words = ["fuck", "shit", "bitch", "nigga", "nigger", "pussy", "bastard", "dick", "cunt", "piss", "crap", "slut", "whore", "faggot", "ass", "rape", "sex", "anal", "anus", "penis", "cuck", "cock"];
 const regex = new RegExp(words.join('|'), 'i');
 
 renderMessageHTML = function(message) {
