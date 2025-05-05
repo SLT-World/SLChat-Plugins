@@ -20,8 +20,14 @@ document.body.insertAdjacentHTML('beforeend', `
 </div>`);
 
 function toggleGifCard() {
-  const card = document.getElementById('gif_card');
-  if (card) { card.classList.toggle('open'); }
+  const gif_card = document.getElementById('gif_card');
+  if (gif_card) { 
+    gif_card.classList.toggle('open');
+    if (gif_card.classList.contains('open')) {
+      const gif_input = gif_card.getElementById('gif_input')
+      if (gif_input) { gif_input.focus(); }
+    }
+  }
 }
 
 document.getElementById('gif_input').addEventListener('keydown', async function (e) {
@@ -29,13 +35,13 @@ document.getElementById('gif_input').addEventListener('keydown', async function 
     const query = this.value.trim();
     if (!query) return;
 
-    const grid = document.getElementById('gif_grid');
-    grid.innerHTML = "Loading...";
+    const gif_grid = document.getElementById('gif_grid');
+    gif_grid.innerHTML = "Loading...";
 
     try {
       const response = await fetch(`https://g.tenor.com/v1/search?q=${encodeURIComponent(query)}&key=LIVDSRZULELA`);
       const data = await response.json();
-      grid.innerHTML = "";
+      gif_grid.innerHTML = "";
       for (const result of data.results) {
         const media = result.media[0];
         const url = media?.tinygif?.url || media?.gif?.url;
@@ -50,17 +56,17 @@ document.getElementById('gif_input').addEventListener('keydown', async function 
             send(convertLinksToHtml(url));
             toggleGifCard();
           };
-          grid.appendChild(img);
+          gif_grid.appendChild(img);
         }
       }
 
-      if (!grid.hasChildNodes()) {
-        grid.innerHTML = "No GIFs found.";
+      if (!gif_grid.hasChildNodes()) {
+        gif_grid.innerHTML = "No GIFs found.";
       }
 
     } catch (error) {
       console.error("GIF fetch error:", error);
-      grid.innerHTML = "Failed to load GIFs.";
+      gif_grid.innerHTML = "Failed to load GIFs.";
     }
   }
 });
