@@ -1,7 +1,7 @@
 const controlsSection = document.querySelector('.controls-section');
 
 const newButton = document.createElement("button");
-newButton.innerHTML = `<i class="bx bx-refresh"></i>`;
+newButton.innerHTML = `<i class="bx bxs-file-gif"></i>`;
 newButton.onclick = () => {
   toggleGifCard();
 };
@@ -38,16 +38,16 @@ document.getElementById('gif_input').addEventListener('keydown', async function 
       grid.innerHTML = "";
       for (const result of data.results) {
         const media = result.media[0];
-        const gifUrl = media?.tinygif?.url || media?.gif?.url;
+        const url = media?.tinygif?.url || media?.gif?.url;
         if (gifUrl) {
           const img = document.createElement('img');
-          img.src = gifUrl;
+          img.src = url;
           img.alt = query;
           img.style.width = "150px";;
           img.style.cursor = "pointer";
           img.style.height = "auto";
           img.onclick = () => {
-            send(convertLinksToHtml(gifUrl));
+            send(convertLinksToHtml(url));
             toggleGifCard();
           };
           grid.appendChild(img);
