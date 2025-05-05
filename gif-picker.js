@@ -1,7 +1,7 @@
 const controlsSection = document.querySelector('.controls-section');
 
 const newButton = document.createElement("button");
-newButton.innerHTML = `<i class="bx bxs-file-gif"></i>`;
+newButton.innerHTML = `<i class="bx bx-landscape"></i>`;
 newButton.onclick = () => {
   toggleGifCard();
 };
