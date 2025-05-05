@@ -24,7 +24,7 @@ function toggleGifCard() {
   if (gif_card) { 
     gif_card.classList.toggle('open');
     if (gif_card.classList.contains('open')) {
-      const gif_input = gif_card.getElementById('gif_input')
+      const gif_input = document.getElementById('gif_input')
       if (gif_input) { gif_input.focus(); }
     }
   }
