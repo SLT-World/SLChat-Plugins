@@ -73,12 +73,14 @@ async function load_gifs(url) {
 document.getElementById('gif_input').addEventListener('keydown', async function (e) {
   if (e.key === 'Enter') {
     const query = this.value.trim();
-    if (!query) {
-      await load_gifs(`https://g.tenor.com/v1/trending?key=LIVDSRZULELA`);
-    }
 
     const gif_grid = document.getElementById('gif_grid');
     gif_grid.innerHTML = `<i class="bx bx-loader bx-spin bx-md" style="height: 35px;background: transparent;"></i>`;
+    
+    if (!query) {
+      await load_gifs(`https://g.tenor.com/v1/trending?key=LIVDSRZULELA`);
+      return;
+    }
 
     await load_gifs(`https://g.tenor.com/v1/search?q=${encodeURIComponent(query)}&key=LIVDSRZULELA`);
   }
