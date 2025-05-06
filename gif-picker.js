@@ -19,54 +19,67 @@ document.body.insertAdjacentHTML('beforeend', `
   </div>
 </div>`);
 
-function toggleGifCard() {
+async function toggleGifCard() {
   const gif_card = document.getElementById('gif_card');
   if (gif_card) { 
     gif_card.classList.toggle('open');
     if (gif_card.classList.contains('open')) {
       const gif_input = document.getElementById('gif_input')
       if (gif_input) { gif_input.focus(); }
+      if (gif_grid.innerHTML.trim() == "") {
+        await load_gifs(`https://g.tenor.com/v1/trending?key=LIVDSRZULELA`);
+      }
     }
   }
 }
+/*(async function() {
+  await load_gifs(`https://g.tenor.com/v1/trending?key=LIVDSRZULELA`);
+})();*/
+
+async function load_gifs(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    gif_grid.innerHTML = "";
+    for (const result of data.results) {
+      const media = result.media[0];
+      const url = media?.tinygif?.url || media?.gif?.url;
+      if (url) {
+        const img = document.createElement('img');
+        img.src = url;
+        img.style.width = "150px";;
+        img.style.cursor = "pointer";
+        img.style.height = "auto";
+        img.onclick = () => {
+          send(convertLinksToHtml(url));
+          toggleGifCard();
+        };
+        gif_grid.appendChild(img);
+      }
+    }
+
+    if (!gif_grid.hasChildNodes()) {
+      gif_grid.innerHTML = "No GIFs found.";
+    }
+
+  } catch (error) {
+    console.error("GIF fetch error:", error);
+    gif_grid.innerHTML = "Failed to load GIFs.";
+  }
+}
+
+
 
 document.getElementById('gif_input').addEventListener('keydown', async function (e) {
   if (e.key === 'Enter') {
     const query = this.value.trim();
-    if (!query) return;
+    if (!query) {
+      await load_gifs(`https://g.tenor.com/v1/trending?key=LIVDSRZULELA`);
+    }
 
     const gif_grid = document.getElementById('gif_grid');
-    gif_grid.innerHTML = "Loading...";
+    gif_grid.innerHTML = `<i class="bx bx-loader bx-spin bx-md" style="height: 35px;background: transparent;"></i>`;
 
-    try {
-      const response = await fetch(`https://g.tenor.com/v1/search?q=${encodeURIComponent(query)}&key=LIVDSRZULELA`);
-      const data = await response.json();
-      gif_grid.innerHTML = "";
-      for (const result of data.results) {
-        const media = result.media[0];
-        const url = media?.tinygif?.url || media?.gif?.url;
-        if (url) {
-          const img = document.createElement('img');
-          img.src = url;
-          img.alt = query;
-          img.style.width = "150px";;
-          img.style.cursor = "pointer";
-          img.style.height = "auto";
-          img.onclick = () => {
-            send(convertLinksToHtml(url));
-            toggleGifCard();
-          };
-          gif_grid.appendChild(img);
-        }
-      }
-
-      if (!gif_grid.hasChildNodes()) {
-        gif_grid.innerHTML = "No GIFs found.";
-      }
-
-    } catch (error) {
-      console.error("GIF fetch error:", error);
-      gif_grid.innerHTML = "Failed to load GIFs.";
-    }
+    await load_gifs(`https://g.tenor.com/v1/search?q=${encodeURIComponent(query)}&key=LIVDSRZULELA`);
   }
 });
