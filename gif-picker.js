@@ -1,7 +1,7 @@
-const controlsSection = document.querySelector('.controls-section');
+var controlsSection = document.querySelector('.controls-section');
 
 if (controlsSection) {
-  const newButton = document.createElement("button");
+  var newButton = document.createElement("button");
   newButton.innerHTML = `<i class="bx bx-landscape"></i>`;
   newButton.onclick = () => { toggleGifCard(); };
   
@@ -18,7 +18,7 @@ if (controlsSection) {
   </div>`);
   
   async function toggleGifCard() {
-    const gif_card = document.getElementById('gif_card');
+    var gif_card = document.getElementById('gif_card');
     if (gif_card) { 
       gif_card.classList.toggle('open');
       if (gif_card.classList.contains('open')) {
@@ -30,12 +30,12 @@ if (controlsSection) {
   }
   
   async function load_gifs(url) {
-    const gif_grid = document.getElementById('gif_grid');
+    var gif_grid = document.getElementById('gif_grid');
     gif_grid.innerHTML = `<i class="bx bx-loader bx-spin bx-md" style="height: 35px;background: transparent;"></i>`;
     
     try {
-      const response = await fetch(url);
-      const data = await response.json();
+      var response = await fetch(url);
+      var data = await response.json();
       gif_grid.innerHTML = "";
       for (const result of data.results) {
         const media = result.media[0];
@@ -68,7 +68,7 @@ if (controlsSection) {
   
   document.getElementById('gif_input').addEventListener('keydown', async function (e) {
     if (e.key === 'Enter') {
-      const query = this.value.trim();
+      var query = this.value.trim();
       if (!query) { await load_gifs(`https://g.tenor.com/v1/trending?key=LIVDSRZULELA`); }
       else { await load_gifs(`https://g.tenor.com/v1/search?q=${encodeURIComponent(query)}&key=LIVDSRZULELA`); }
     }
