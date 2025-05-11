@@ -1,4 +1,4 @@
-var controlsSection = document.querySelector('.controls-section');
+var controlsSection = document.querySelector('.controls');
 
   
 async function toggleGifCard() {
