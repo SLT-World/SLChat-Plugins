@@ -56,8 +56,8 @@ if (controlsSection) {
   newButton.onclick = () => { toggleGifCard(); };
   
   controlsSection.insertBefore(newButton, controlsSection.querySelector('button[onclick="sendMessage()"]'));
-  
-  document.body.insertAdjacentHTML('beforeend', `<div id="gif_card" style="max-width: 350px; position: fixed; max-height: 400px; background: var(--darker-secondary-color); padding: 10px;" class="card">
+
+  document.body.insertAdjacentHTML('beforeend', `<div id="gif_card" style=" position: fixed; max-width: 350px; max-height: 400px; background: var(--darker-secondary-color); padding: 10px;bottom: 80px;right: 20px;top: unset;left: unset;transform: unset;" class="card">
     <div style="display: flex; align-items: center; justify-content: flex-end; position: relative;">
       <button onclick="toggleGifCard()"><i class="bx bx-x-circle"></i></button>
       <p class="text" style="text-align: center; position: absolute; left: 50%; transform: translateX(-50%);">GIFs</p>
@@ -66,6 +66,8 @@ if (controlsSection) {
     <div id="gif_grid" class="grid" style="background: var(--secondary-color); border-radius: 5px; padding: 10px; overflow: auto; justify-content: center; max-height: 275px;display: flex;flex-wrap: wrap;flex-direction: row;align-items: stretch;">
     </div>
   </div>`);
+
+
   
   document.getElementById('gif_input').addEventListener('keydown', async function (e) {
     if (e.key === 'Enter') {
