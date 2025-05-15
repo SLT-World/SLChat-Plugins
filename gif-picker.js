@@ -57,7 +57,7 @@ if (controlsSection) {
   
   controlsSection.insertBefore(newButton, controlsSection.querySelector('button[onclick="sendMessage()"]'));
 
-  document.body.insertAdjacentHTML('beforeend', `<div id="gif_card" style=" position: fixed; max-width: 350px; max-height: 400px; background: var(--darker-secondary-color); padding: 10px;bottom: 80px;right: 20px;top: unset;left: unset;transform: unset;" class="card">
+  document.body.insertAdjacentHTML('beforeend', `<div id="gif_card" style="box-shadow: 0 5px 10px rgb(0 0 0 / 0.75); border: 1px solid var(--light-gray-color); position: fixed; max-width: 350px; max-height: 400px; background: var(--darker-secondary-color); padding: 10px;bottom: 80px;right: 20px;top: unset;left: unset;transform: unset;" class="card">
     <div style="display: flex; align-items: center; justify-content: flex-end; position: relative;">
       <button onclick="toggleGifCard()"><i class="bx bx-x-circle"></i></button>
       <p class="text" style="text-align: center; position: absolute; left: 50%; transform: translateX(-50%);">GIFs</p>
