@@ -126,7 +126,7 @@ toggleEmoji = function() {
             "tags": []
         },
         {
-            "emoji": "🌐‍🎯",
+            "emoji": "🌐‍🅾",
             "description": "opera browser",
             "aliases": [ "opera", "opera_browser" ],
             "tags": []
