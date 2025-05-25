@@ -294,6 +294,7 @@ toggleEmoji = function() {
             "tags": []
         }
     ];
+    emojisData = emojisData.concat(emojis.custom);
   }
 };
 
