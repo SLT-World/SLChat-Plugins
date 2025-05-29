@@ -17,7 +17,7 @@ async function toggleGifCard() {
   
 async function load_gifs(url) {
   var gif_grid = document.getElementById('gif_grid');
-  gif_grid.innerHTML = `<i class="bx bx-loader bx-spin bx-md" style="height: 35px;background: transparent;"></i>`;
+  gif_grid.innerHTML = `<i class="bx bx-loader-dots bx-spin bx-md" style="height: 35px;background: transparent;"></i>`;
   
   try {
     var response = await fetch(url);
@@ -52,7 +52,7 @@ async function load_gifs(url) {
 
 if (controlsSection) {
   var newButton = document.createElement("button");
-  newButton.innerHTML = `<i class="bx bx-landscape"></i>`;
+  newButton.innerHTML = `<i class="bx bx-image-landscape"></i>`;
   newButton.onclick = () => { toggleGifCard(); };
   
   controlsSection.insertBefore(newButton, controlsSection.querySelector('button[onclick="sendMessage()"]'));
